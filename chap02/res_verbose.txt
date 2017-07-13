@@ -1,0 +1,55 @@
+ >> setting environment variables: 
+PKG_LIBS = 
+
+ >> LinkingTo : Rcpp
+CLINK_CPPFLAGS =  -I"/home/weiya/R/x86_64-pc-linux-gnu-library/library/Rcpp/include" 
+
+ >> Program source :
+
+   1 : 
+   2 : // includes from the plugin
+   3 : 
+   4 : #include <Rcpp.h>
+   5 : 
+   6 : 
+   7 : #ifndef BEGIN_RCPP
+   8 : #define BEGIN_RCPP
+   9 : #endif
+  10 : 
+  11 : #ifndef END_RCPP
+  12 : #define END_RCPP
+  13 : #endif
+  14 : 
+  15 : using namespace Rcpp;
+  16 : 
+  17 : 
+  18 : // user includes
+  19 : 
+  20 : 
+  21 : // declarations
+  22 : extern "C" {
+  23 : SEXP file130f75d97d8c( SEXP a, SEXP b) ;
+  24 : }
+  25 : 
+  26 : // definition
+  27 : 
+  28 : SEXP file130f75d97d8c( SEXP a, SEXP b ){
+  29 : BEGIN_RCPP
+  30 : 
+  31 :   Rcpp::NumericVector xa(a);
+  32 :   Rcpp::NumericVector xb(b);
+  33 :   int n_xa = xa.size();
+  34 :   int n_xb = xb.size();
+  35 :   
+  36 :   Rcpp::NumericVector xab(n_xa + n_xb - 1);
+  37 :   for (int i = 0; i < n_xa; i++)
+  38 :     for (int j = 0; j < n_xb; j++)
+  39 :       xab[i+j] += xa[i] * xb[j];
+  40 :   return xab;
+  41 : 
+  42 : END_RCPP
+  43 : }
+  44 : 
+  45 : 
+Compilation argument:
+ /usr/lib/R/bin/R CMD SHLIB file130f75d97d8c.cpp 2> file130f75d97d8c.cpp.err.txt 
