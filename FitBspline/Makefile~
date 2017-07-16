@@ -1,2 +1,0 @@
-Bspline: FitBspline.cpp
-	g++ $^ -o $@ $(gsl-config --libs)

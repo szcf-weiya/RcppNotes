@@ -1,3 +1,4 @@
+
 //#include <stdio.h>
 //#include <stdlib.h>
 //#include <math.h>
@@ -24,8 +25,8 @@ const int NCOEFFS = 12;
 const int NBREAK = (NCOEFFS - 2);
 
 // [[Rcpp::export]]
-Rcpp::List genData() {
-  const size_t n = N;
+Rcpp::List genData(const int n, const Rcpp::CharacterVector v) {
+  //  const size_t n = N;
   size_t i;
   double dy;
   gsl_rng *r;
@@ -45,7 +46,7 @@ Rcpp::List genData() {
       gsl_vector_set(w, i, 1.0 / (sigma * sigma));
       // printf("%f %f\n", xi, yi);
     }
-  Rcpp::DataFrame res = Rcpp::DataFrame::create(Rcpp::Named("x") = x,
+  Rcpp::DataFrame res = Rcpp::DataFrame::create(Rcpp::Named(v[0]) = x,
 						Rcpp::Named("y") = y,
 						Rcpp::Named("w") = w);
   x.free();
