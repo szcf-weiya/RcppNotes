@@ -2,7 +2,7 @@
 Rcpp::sourceCpp('rFitBspline.cpp')
 
 # generate the data
-dat <- genData()
+dat <- genData(210)
 
 # fit the model, returns matrix and gof measures
 
