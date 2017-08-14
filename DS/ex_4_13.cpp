@@ -1,6 +1,8 @@
 #include <Rcpp.h>
 
 extern "C" SEXP mypnorm(SEXP xx){
+  if(Rf_isNull(xx))
+    return R_NilValue;
   Rcpp::NumericVector x(xx);
   int n = x.size();
   Rcpp::NumericVector y1(n), y2(n), y3(n);
